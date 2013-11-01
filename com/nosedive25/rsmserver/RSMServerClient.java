@@ -44,7 +44,7 @@ public class RSMServerClient {
 			
 			if (input != null) {
 				if (input.contains("REQUEST_SERVER_PROPERTIES")) {
-					serverOut.writeBytes("SERVER_PROPERTIES:" + RSMServer.serverProperties() + '\n');
+					serverOut.writeBytes("SERVER_PROPERTIES:" + RSMServer.serverProperties().toString() + '\n');
 				} else if (input.contains("REQUEST_ACTIVE_GAMES")) {
 					serverOut.writeBytes("ACTIVE_GAMES:" + RSMServer.activeGames().toString() + '\n');
 				} else if (input.contains("JOIN_GAME:")) {
@@ -56,6 +56,12 @@ public class RSMServerClient {
 				} else if (input.contains("SET_PLAYER_ID:")) {
 					playerID = input.split(":")[1];
 					System.out.println("User \"" + playerID + "\" has joined the server");
+				} else if (input.contains("CREATE_GAME:")) {
+					if (RSMServer.serverProperties().get("ClientsCanStartGames").equals("YES")) {
+						RSMServer.newGame(input.split(":")[1].split(",")[0], input.split(":")[1].split(",")[1]);
+					}
+					
+					System.out.println("User \"" + playerID + "\" created the game \"" + input.split(":")[1].split(",")[0] + "\"");
 				} else {
 					RSMServer.recivedClientData(clientID, input);
 				}
