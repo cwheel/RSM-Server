@@ -1,11 +1,11 @@
 if [ -z "$1" ]
   then
-    echo "No alias supplied, exiting."
+    echo "Usage: genkeys [certificate alias] [valid period (days)]"
 else
 
 if [ -z "$2" ]
   then
-    echo "No validity supplied, exiting."
+    echo "Usage: genkeys [certificate alias] [valid period (days)]"
 else
 
 tput bold
