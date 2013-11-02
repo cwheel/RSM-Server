@@ -9,13 +9,15 @@ import java.net.Socket;
 import java.util.Observable;
 import java.util.UUID;
 
+import javax.net.ssl.SSLSocket;
+
 public class RSMServerClient {
-	private Socket socket;
+	private SSLSocket socket;
 	private String game;
 	private String clientID;
 	private String playerID;
 	
-	public RSMServerClient(Socket s) {
+	public RSMServerClient(SSLSocket s) {
 		socket = s;
 		clientID = UUID.randomUUID().toString();
 		game = "-1";
@@ -74,7 +76,7 @@ public class RSMServerClient {
 		}
 	}
 	
-	public void setSocket(Socket s) {
+	public void setSocket(SSLSocket s) {
 		socket = s;
 	}
 	

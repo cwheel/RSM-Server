@@ -10,6 +10,7 @@ import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLServerSocket;
 import javax.net.ssl.SSLServerSocketFactory;
+import javax.net.ssl.SSLSocket;
 import javax.net.ssl.TrustManagerFactory;
 
 public class RSMServer {
@@ -78,7 +79,7 @@ public class RSMServer {
 	
 	 public static void acceptClients() throws IOException {
 		 while(true) {
-	        	Socket socket = connSocket.accept();
+	        	SSLSocket socket = (SSLSocket)connSocket.accept();
 	        	
 	        	RSMServerClient newClient = new RSMServerClient(socket); //TODO: Set additional info about client
 	        	clients.add(newClient);
