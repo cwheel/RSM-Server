@@ -27,7 +27,7 @@ RSM is far from completed and has only the base system setup. It should be ready
 - [ ] More efficient client search algorithim
 - [x] Better server responce handeling
 - [x] Basic server properties file (server.props)
-- [ ] Better server properties (not just java strings)
+- [X] Better server properties (not just java strings)
 - [ ] Server properties error handeling
 - [x] Client side game creation
 - [x] Clients can safely disconnect
