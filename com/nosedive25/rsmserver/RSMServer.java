@@ -4,6 +4,7 @@ import java.net.*;
 import java.security.KeyStore;
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Hashtable;
 
 import javax.net.ssl.KeyManagerFactory;
@@ -30,12 +31,26 @@ public class RSMServer {
 			 FileInputStream fs = new FileInputStream("server.props");
 			 DataInputStream in = new DataInputStream(fs);
 			 BufferedReader br = new BufferedReader(new InputStreamReader(in));
-			 props = stringToHashtable(br.readLine());
-			 games = gamesFromServerString(br.readLine()); 
-			 keyPass = br.readLine();
+			 
+			 String line;
+			 while ((line = br.readLine()) != null) {
+				 if (line.startsWith("Game:")) {
+					 RSMGame newGame = new RSMGame(line.replace("Game: ", "").split(",")[0]);
+					 newGame.setMotd(line.replace("Game: ", "").split(",")[1]);
+					 games.add(newGame);
+				 }
+				 if (line.startsWith("ServerName:")) {
+					 addServerProperty("ServerName", line.replace("ServerName: ", ""));
+				 }
+				 if (line.startsWith("ClientsCanStartGames:")) {
+					 addServerProperty("ClientsCanStartGames", line.replace("ClientsCanStartGames: ", ""));
+				 }
+				 if (line.startsWith("KeyPass:")) {
+					 keyPass = line.replace("KeyPass: ", "");
+				 }
+			 }
 		} else {
-			addServerProperty("ServerName","DebugServer");
-            addServerProperty("ClientsCanStartGames","NO");
+			throw new Exception("The Server Properties file is missing!");
 		}
 
     	SecureRandom sr = new SecureRandom();
@@ -81,7 +96,7 @@ public class RSMServer {
 		 while(true) {
 	        	SSLSocket socket = (SSLSocket)connSocket.accept();
 	        	
-	        	RSMServerClient newClient = new RSMServerClient(socket); //TODO: Set additional info about client
+	        	RSMServerClient newClient = new RSMServerClient(socket);
 	        	clients.add(newClient);
 	        }
 	 }
@@ -146,7 +161,7 @@ public class RSMServer {
 			return newTable;
 	 }
 	 
-	 private static RSMServerClient getClientWithID(String id) { //TODO: Implement a more efficient search
+	 private static RSMServerClient getClientWithID(String id) {
 		 for (RSMServerClient client: clients) {
 			 if (id.contains(client.clientID())){
 				 return client;

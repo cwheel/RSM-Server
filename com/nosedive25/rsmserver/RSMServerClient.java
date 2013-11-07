@@ -99,5 +99,10 @@ public class RSMServerClient {
 	public String playerID() {
 		return playerID;
 	}
+	/*
+	@Override
+	public int compareTo(Object o) {
+		return clientID.compareTo((RSMServerClient)o.clientID());
+	}*/
 	
 }
