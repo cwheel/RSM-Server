@@ -16,7 +16,7 @@ You can find some basic documentation for the ~~current~~ (now outdated) build h
 - Grab the source for RSM-Server
 - Compile the source into a jar (server.jar)
 - Make a server.props file (sort of working), example here:https://dl.dropboxusercontent.com/u/53944475/server.props
-- Run genkeys.sh and copy the clienttruststore file to the location server.jar resides
+- Run genkeys.sh and copy the serverkeystore file to the location server.jar resides
 - Start up server.jar
 
 **Project Status**
