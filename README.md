@@ -27,11 +27,11 @@ You can find some basic documentation for the ~~current~~ (now a bit outdated) b
 RSM is far from completed and has only the base system setup. It should be ready for the upcoming Ludum Dare in December for any brave souls who'd like to try it.
 
 - [x] SSL
-- [ ] More efficient client search algorithim
-- [x] Better server responce handeling
+- [ ] More efficient client search algorithm
+- [x] Better server responce handling
 - [x] Basic server properties file (server.props)
-- [X] Better server properties (not just java strings)
-- [ ] Server properties error handeling
+- [x] Better server properties (not just Java strings)
+- [ ] Server properties error handling
 - [x] Client side game creation
 - [x] Clients can safely disconnect
 - [x] Keystore generation script
